@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 定义了一个Bean，名称是myCoconut -->
+    <bean name="myCoconut" class="com.compilemind.guide.chapter01._03_use_xml.Coconut">
+        <!-- 对于Coconut的weight属性，我们设置它的初始值100 -->
+        <property name="weight" value="100"/>
+    </bean>
+
+</beans>

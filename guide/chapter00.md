@@ -1,6 +1,6 @@
 # Chapter00 学习SpringBoot前的准备知识
 
-## 1.反射
+## 一 反射
 
 在Java中，我们可以通过反射（Reflection）来获取任何类的类型信息，其中最值得关注的就是Class类。通过Class类，我们拿到任意对象的相关上下文。
 
@@ -62,6 +62,8 @@ Object user1 = constructor.newInstance();
 System.out.println(user1);
 
 // 5. 通过有参构造函数创建实例
+// 注意有参构造函数获取时，传入了参数的class对象
+// 以及在newInstance的时候，需要传入实际的值
 Constructor<?> constructor1 = userClass.getConstructor(String.class, int.class);
 Object user2 = constructor1.newInstance("Mr.Hello", 18);
 System.out.println(user2);
@@ -132,7 +134,7 @@ System.out.println(user);
 
 该部分可以在chapter00.manual包下查看源码。
 
-## 2.Spring"构造"对象
+## 二 Spring"构造"对象
 
 可能读者会疑惑，为什么`1.反射`和`2.Spring"构造"对象`会放在一起，实际上Spring的对象构造的底层就是使用反射进行的。接下来，让我们看看Spring中，如何"构造"一个对象。
 
@@ -174,7 +176,7 @@ public class IocApp {
 }
 ```
 
-在这段代码中，在有main函数的类上，添加`@SpringBootApplication`，标记是一个SpringBoot应用。
+在这段代码中，在有main函数的类上，添加`@SpringBootApplication`，标记是一个**SpringBoot**应用。
 
 接着，我们在main函数中调用`SpringApplication.run(IocApp.class, args);`来启动这个SpringBoot应用。启动后，SpringBoot框架会去扫描当前包以及子包下（默认情况）的所有具有`@Component`标记的类，并通过反射的方式创建这个类的实例，存放在Spring的**Bean**容器中。
 
@@ -187,7 +189,7 @@ public class IocApp {
 Object getBean(String name) throws BeansException;
 ```
 
-这里简单提一下，Bean的name是有一定的规则。默认情况下，是类名称的小驼峰形式，这里UserEx对应的名称就是userEx；但是我们通过设置注解的name字段：`@Component("myUserEx")`。
+这里简单提一下，Bean的name是有一定的规则。默认情况下，是类名称的小驼峰形式，这里UserEx对应的名称就是userEx；但是我们通过设置注解的name字段：`@Component("myUserEx")`，能够自定义在Bean在容器中的名称。
 
 看到这里，让我们再次回顾第一节反射中的操作：我们在`User`类上添加注解`@UserInfo`，然后通过反射，获取注解的信息，并创建User实例。
 
@@ -302,7 +304,7 @@ UserEx 无参构造函数
 com.compilemind.guide.chapter00.spring.UserEx@5300f14a
 ```
 
-在上面的例子中，我们手动进行了依赖的管理，那么Spring的IOC容器是否可以帮助我们去管理依赖吗？答案是肯定的。我们只需要在需要注入依赖字段的setter上（后面会介绍其他的方法），加上`@Autowired`注解即可实现这样的功能：
+在上面的例子中，我们手动进行了依赖的管理，那么Spring的IOC容器是否可以帮助我们去管理依赖吗？答案是肯定的。我们只需要在需要注入依赖字段的setter方法上（后面会介绍其他的方式），加上`@Autowired`注解即可实现这样的功能：
 
 ```java
 @Component
@@ -341,9 +343,9 @@ public class IocApp {
 }
 ```
 
-最后的输出与上面是相同。
+最后的输出与上面手动设置依赖是相同。
 
 ## 本章总结
 
-在本章中，我们了解了Java中关于反射的一些基础知识，了解了如何通过反射而不是new的形式创建对象。在此基础上，我们介绍了Spring IOC容器，让大家明白了Spring IOC底层的基本原理。最后，我们介绍了IOC控制反转以及DI依赖注入的概念，并用Spring框架演示了这些概念。
+在本章中，我们了解了Java中关于反射的一些基础知识，了解了如何通过反射而不是new的形式创建对象。在此基础上，我们介绍了Spring IOC容器，让大家明白了Spring IOC底层的基本原理。最后，我们介绍了IOC控制反转以及DI依赖注入的概念，并用Spring框架演示了这些概念。在下一章，我们将介绍使用SpringIOC容器来创建Bean的几种方式。
 
