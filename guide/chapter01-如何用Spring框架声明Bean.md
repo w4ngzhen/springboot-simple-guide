@@ -1,4 +1,4 @@
-# chapter01 如何用Spring框架声明Bean
+# chapter01-如何用Spring框架声明Bean
 
 ## 前言
 

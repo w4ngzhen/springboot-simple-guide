@@ -1,4 +1,4 @@
-# Chapter00 学习SpringBoot前的准备知识
+# Chapter00 学习SpringBoot前的基本知识
 
 ## 一 反射
 
