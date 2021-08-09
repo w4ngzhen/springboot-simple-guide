@@ -1,6 +1,6 @@
-package com.compilemind.guide.chapter04.controller;
+package com.compilemind.guide.chapter04_05.controller;
 
-import com.compilemind.guide.chapter04.model.Book;
+import com.compilemind.guide.chapter04_05.model.Book;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

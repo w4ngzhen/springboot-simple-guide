@@ -18,8 +18,6 @@ base-package
 ## Book类
 
 ```java
-package com.compilemind.guide.chapter04.model;
-
 public class Book {
     /**
      * 书籍ID

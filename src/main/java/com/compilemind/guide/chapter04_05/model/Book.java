@@ -1,4 +1,4 @@
-package com.compilemind.guide.chapter04.model;
+package com.compilemind.guide.chapter04_05.model;
 
 public class Book {
     /**
