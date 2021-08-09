@@ -50,10 +50,18 @@ public class BookController {
      */
     @GetMapping("{id}")
     public Book getBookById(@PathVariable("id") String id) {
+        long currentTimeMillis = System.currentTimeMillis();
+        try {
+            // 为了更加明显，我模拟了一个耗时
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Optional<Book> first = this.bookList
                 .stream()
                 .filter(b -> b.getId().equals(id))
                 .findFirst();
+        System.out.printf("处理耗时：%d ms %n", (System.currentTimeMillis() - currentTimeMillis));
         return first.orElse(null);
     }
 
